@@ -18,20 +18,10 @@ This project is a web application built using Laravel for the backend and Vue.js
    git clone https://github.com/Chi-G/laravel-with-vue-js.git
    cd your-repo/backend
 
-2. Install the dependencies:
-
-    ```sh
-    composer install
-    cp .env.example .env
-    php artisan key:generate
-    php artisan storage:link
-    php artisan migrate
-    php artisan serve
-
 
 ### Frontend (Vue.js)
 
-1. Navigate to the frontend directory:
+2. Navigate to the frontend directory:
 
     ```sh
     cd ../frontend
@@ -41,5 +31,4 @@ This project is a web application built using Laravel for the backend and Vue.js
 
 ### Usage
 
-Open your browser and navigate to <http://localhost:8000> to access the Laravel backend.
 Open another tab and navigate to <http://localhost:5173> to access the Vue.js frontend.

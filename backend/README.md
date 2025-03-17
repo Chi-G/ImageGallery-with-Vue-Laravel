@@ -29,17 +29,6 @@ This project is a web application built using Laravel for the backend and Vue.js
     php artisan serve
 
 
-### Frontend (Vue.js)
-
-1. Navigate to the frontend directory:
-
-    ```sh
-    cd ../frontend
-    npm install
-    npm run dev
-
-
 ### Usage
 
 Open your browser and navigate to <http://localhost:8000> to access the Laravel backend.
-Open another tab and navigate to <http://localhost:5173> to access the Vue.js frontend.
