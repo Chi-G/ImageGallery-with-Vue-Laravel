@@ -1,0 +1,42 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Node modules (Frontend)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Logs and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# Laravel specific (Backend)
+backend/vendor/
+backend/node_modules/
+backend/bootstrap/cache/
+backend/storage/
+backend/storage/*.key
+backend/public/storage
+backend/public/hot
+backend/public/build
+backend/.env
+backend/.env.* 
+backend/.phpunit.result.cache
+backend/.phpactor.json
+
+# IDE and Editor Files
+.idea/
+.vscode/
+.fleet/
+.nova/
+.zed/
+
+# Git and dependency files
+backend/auth.json
+frontend/auth.json
+frontend/.env
