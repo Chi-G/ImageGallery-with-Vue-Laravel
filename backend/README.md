@@ -1,4 +1,4 @@
-# Laravel and Vue.js Project
+# ImageGallery with Vue & Laravel
 
 This project is a web application built using Laravel for the backend and Vue.js for the frontend. It includes features such as image upload and user authentication.
 
