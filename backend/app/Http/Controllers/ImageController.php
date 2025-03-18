@@ -55,7 +55,6 @@ class ImageController extends Controller
         ]);
     }
 
-    // Other methods (store, byDate, destroy) remain unchanged for now
     public function store(Request $request)
     {
         $request->validate([
