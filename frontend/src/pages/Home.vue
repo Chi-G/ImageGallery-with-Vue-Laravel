@@ -34,7 +34,7 @@ function submit() {
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
       <form @submit.prevent="submit">
         <div class="mb-4">
-          <label for="cover-photo" class="block text-sm/6 font-medium text-gray-900">Image</label>
+          <label for="file-upload" class="block text-sm/6 font-medium text-gray-900">Image</label>
           <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
             <div class="text-center">
               <PhotoIcon class="mx-auto size-12 text-gray-300" aria-hidden="true"/>
