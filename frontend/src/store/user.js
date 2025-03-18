@@ -1,19 +1,40 @@
-import {defineStore} from "pinia";
+import { defineStore } from "pinia";
 import axiosClient from "../axios.js";
+import router from "../router.js";
 
-const useUserStore = defineStore('user', {
+export const useUserStore = defineStore("user", {
   state: () => ({
-    user: null
+    user: null,
+    loading: false,
+    error: null,
   }),
   actions: {
-    fetchUser() {
-      return axiosClient.get('/api/user')
-        .then(({data}) => {
-          console.log(data)
-          this.user = data
-        })
-    }
-  }
-})
+    async fetchUser() {
+      this.loading = true;
+      this.error = null; 
+      try {
+        const { data } = await axiosClient.get("/api/user");
+        this.user = data;
+      } catch (error) {
+        this.error = error.response?.data?.message || "Failed to fetch user";
+        this.user = null;
+      } finally {
+        this.loading = false; 
+      }
+    },
+    async logout() {
+      this.loading = true;
+      try {
+        await axiosClient.post("/logout");
+        this.user = null;
+        router.push({ name: "Login" });
+      } catch (error) {
+        this.error = error.response?.data?.message || "Logout failed";
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
+});
 
 export default useUserStore;

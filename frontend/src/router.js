@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import DefaultLayout from "./components/DefaultLayout.vue";
 import Home from "./pages/Home.vue";
 import MyImages from "./pages/MyImages.vue";
@@ -11,40 +11,42 @@ const routes = [
   {
     path: "/",
     component: DefaultLayout,
+    meta: { requiresAuth: true },
     children: [
-      {path: '/', name: 'Home', component: Home},
-      {path: '/images', name: 'MyImages', component: MyImages},
+      { path: "/", name: "Home", component: Home },
+      { path: "/images", name: "MyImages", component: MyImages },
+      { path: "/images/:date", name: "ImagesByDate", component: MyImages },
     ],
-    beforeEnter: async (to, from, next) => {
-      try {
-        const userStore = useUserStore();
-        await userStore.fetchUser();
-        next();
-      } catch (error) {
-        next(false); // Cancel navigation if data fetching fails
-      }
-    },
   },
+  { path: "/login", name: "Login", component: Login },
+  { path: "/signup", name: "Signup", component: Signup },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login,
-  },
-  {
-    path: '/signup',
-    name: 'Signup',
-    component: Signup,
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'NotFound',
-    component: NotFound
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
-export default router
+router.beforeEach(async (to, from, next) => {
+  const userStore = useUserStore();
+  if (to.meta.requiresAuth) {
+    try {
+      await userStore.fetchUser();
+      if (!userStore.user) {
+        return next({ name: "Login" });
+      }
+      next();
+    } catch (error) {
+      next({ name: "Login" });
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;
